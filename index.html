@@ -1,20 +1,18 @@
-import { Hono } from 'hono'
-import { renderer } from './renderer'
-
-const app = new Hono()
-
-app.use(renderer)
-
-app.get('/', (c) => {
-  const cells = Array.from({ length: 16 })
-
-  return c.render(
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>年輪 2048</title>
+    <meta name="description" content="同じ数字のタイルを重ねて、年輪のように育てよう" />
+    <link href="/src/style.css" rel="stylesheet" />
+    <script type="module" src="/src/client.ts"></script>
+  </head>
+  <body class="page-gradient min-h-screen font-sans text-ink">
     <div class="flex min-h-screen flex-col items-center px-4 py-8">
       <div class="flex w-full max-w-[420px] flex-col gap-5">
         <header class="text-center">
-          <h1 class="font-serif text-4xl tracking-wide text-ink">
-            年輪 2048
-          </h1>
+          <h1 class="font-serif text-4xl tracking-wide text-ink">年輪 2048</h1>
           <p class="mt-2 text-sm text-ink-dim">
             同じ数字のタイルを重ねて、年輪のように育てよう
           </p>
@@ -24,21 +22,11 @@ app.get('/', (c) => {
           <div class="flex gap-3">
             <div class="min-w-[76px] rounded-[10px] border border-panel-edge bg-panel px-4 py-2 text-center">
               <div class="text-xs text-ink-dim">スコア</div>
-              <div
-                id="score"
-                class="font-mono text-xl font-bold text-ink"
-              >
-                0
-              </div>
+              <div id="score" class="font-mono text-xl font-bold text-ink">0</div>
             </div>
             <div class="min-w-[76px] rounded-[10px] border border-panel-edge bg-panel px-4 py-2 text-center">
               <div class="text-xs text-ink-dim">ベスト</div>
-              <div
-                id="best-score"
-                class="font-mono text-xl font-bold text-ink"
-              >
-                0
-              </div>
+              <div id="best-score" class="font-mono text-xl font-bold text-ink">0</div>
             </div>
           </div>
           <button
@@ -55,15 +43,28 @@ app.get('/', (c) => {
           class="rings-bg relative rounded-[14px] border border-panel-edge bg-panel p-3"
         >
           <div id="board-cells" class="grid grid-cols-4 gap-3">
-            {cells.map(() => (
-              <div class="aspect-square rounded-lg bg-cell-empty" />
-            ))}
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
+            <div class="aspect-square rounded-lg bg-cell-empty"></div>
           </div>
 
           <div
             id="tile-layer"
             class="pointer-events-none absolute inset-3 grid grid-cols-4 grid-rows-4 gap-3"
-          />
+          ></div>
 
           <div
             id="win-overlay"
@@ -95,9 +96,7 @@ app.get('/', (c) => {
             id="lose-overlay"
             class="absolute inset-0 z-20 hidden flex-col items-center justify-center gap-4 rounded-[14px] bg-bg-deep/90 p-6 text-center"
           >
-            <h2 class="font-serif text-2xl text-ink">
-              これ以上動かせません
-            </h2>
+            <h2 class="font-serif text-2xl text-ink">これ以上動かせません</h2>
             <p class="text-sm text-ink-dim">
               スコア <span id="lose-score">0</span> でした。もう一度挑戦しましょう。
             </p>
@@ -111,12 +110,8 @@ app.get('/', (c) => {
           </div>
         </div>
 
-        <p class="text-center text-xs text-ink-dim">
-          矢印キー、またはスワイプで操作
-        </p>
+        <p class="text-center text-xs text-ink-dim">矢印キー、またはスワイプで操作</p>
       </div>
     </div>
-  )
-})
-
-export default app
+  </body>
+</html>
