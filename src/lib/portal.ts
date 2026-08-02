@@ -1,6 +1,6 @@
 import z from "zod";
 
-const PORTAL_URL = "https://nichiyobuild.com";
+export const PORTAL_URL = "https://nichiyobuild.com";
 
 const navigationLinkSchema = z.object({
 	path: z.string(),
