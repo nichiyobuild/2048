@@ -1,6 +1,6 @@
 import type { Child } from "hono/jsx";
 import { Link, Script, ViteClient } from "vite-ssr-components/hono";
-import type { NavigationLink } from "#/lib/portal";
+import { type NavigationLink, PORTAL_URL } from "#/lib/portal";
 
 type Props = {
 	children: Child;
@@ -12,18 +12,16 @@ export function Layout({ children, navigationLinks }: Props) {
 		<html lang="ja">
 			<head>
 				<meta charset="utf-8" />
-				<meta
-					content="width=device-width, initial-scale=1, maximum-scale=1"
-					name="viewport"
-				/>
+				<meta content="width=device-width, initial-scale=1" name="viewport" />
 				<title>年輪 2048</title>
 				<meta
 					content="同じ数字のタイルを重ねて、年輪のように育てよう"
 					name="description"
 				/>
+				<Link href={`${PORTAL_URL}/favicon.svg`} rel="icon" />
 				<Link href="/src/style.css" rel="stylesheet" />
-				<ViteClient />
 				<Script src="/src/client.ts" type="module" />
+				<ViteClient />
 			</head>
 			<body class="page-gradient bg-slate-950 font-sans text-ink">
 				<div class="flex min-h-svh flex-col">
