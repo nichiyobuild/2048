@@ -18,7 +18,7 @@ export function Layout({ children, navigationLinks }: Props) {
 					content="同じ数字のタイルを重ねて、年輪のように育てよう"
 					name="description"
 				/>
-				<Link href={`${PORTAL_URL}/favicon.svg`} rel="icon" />
+				<link href={`${PORTAL_URL}/favicon.svg`} rel="icon" />
 				<Link href="/src/style.css" rel="stylesheet" />
 				<Script src="/src/client.ts" type="module" />
 				<ViteClient />
