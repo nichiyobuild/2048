@@ -1,6 +1,6 @@
 import type { Child } from "hono/jsx";
 import { Link, Script, ViteClient } from "vite-ssr-components/hono";
-import { type NavigationLink, PORTAL_URL } from "#/lib/portal";
+import type { NavigationLink } from "#/lib/portal";
 
 type Props = {
 	children: Child;
@@ -43,7 +43,7 @@ function Footer({ navigationLinks }: FooterProps) {
 	return (
 		<footer class="flex flex-wrap justify-end gap-x-4 gap-y-2 px-4 py-8 text-sm sm:px-12">
 			{navigationLinks?.map((link) => (
-				<a class="hover:underline" href={`${PORTAL_URL}${link.path}`}>
+				<a class="hover:underline" href={link.url}>
 					{link.title}
 				</a>
 			))}

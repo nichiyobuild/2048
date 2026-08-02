@@ -3,8 +3,8 @@ import z from "zod";
 export const PORTAL_URL = "https://nichiyobuild.com";
 
 const navigationLinkSchema = z.object({
-	path: z.string(),
 	title: z.string(),
+	url: z.url(),
 });
 const navigationLinksSchema = z.array(navigationLinkSchema);
 
