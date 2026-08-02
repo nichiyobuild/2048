@@ -1,8 +1,13 @@
 import { Layout } from "#/components/pages/layout";
+import type { NavigationLink } from "#/lib/portal";
 
-export function Home() {
+type Props = {
+	navigationLinks?: NavigationLink[];
+};
+
+export function Home({ navigationLinks }: Props) {
 	return (
-		<Layout>
+		<Layout navigationLinks={navigationLinks}>
 			<div class="flex w-full max-w-105 flex-col gap-5">
 				<header class="text-center">
 					<h1 class="font-serif text-4xl text-ink tracking-wide">年輪 2048</h1>

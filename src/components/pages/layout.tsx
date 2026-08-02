@@ -1,10 +1,11 @@
 import type { Child } from "hono/jsx";
 import { Link, Script, ViteClient } from "vite-ssr-components/hono";
+import type { NavigationLink } from "#/lib/portal";
 
 /** 2048はサブドメイン運用なので、フッターのリンクはportal側の絶対URLにする。 */
 const PORTAL_ORIGIN = "https://nichiyobuild.com";
 
-const FOOTER_LINKS = [
+const _FOOTER_LINKS = [
 	{ path: "/about", title: "このサイトについて" },
 	{ path: "/terms", title: "利用規約" },
 	{ path: "/privacy", title: "プライバシーポリシー" },
@@ -14,9 +15,10 @@ const FOOTER_LINKS = [
 
 type Props = {
 	children: Child;
+	navigationLinks?: NavigationLink[];
 };
 
-export function Layout({ children }: Props) {
+export function Layout({ children, navigationLinks }: Props) {
 	return (
 		<html lang="ja">
 			<head>
@@ -37,17 +39,21 @@ export function Layout({ children }: Props) {
 			<body class="page-gradient bg-slate-950 font-sans text-ink">
 				<div class="flex min-h-svh flex-col">
 					<main class="mx-auto flex-1 px-4">{children}</main>
-					<Footer />
+					<Footer navigationLinks={navigationLinks} />
 				</div>
 			</body>
 		</html>
 	);
 }
 
-function Footer() {
+type FooterProps = {
+	navigationLinks?: NavigationLink[];
+};
+
+function Footer({ navigationLinks }: FooterProps) {
 	return (
 		<footer class="flex flex-wrap justify-end gap-x-4 gap-y-2 px-4 py-8 text-sm sm:px-12">
-			{FOOTER_LINKS.map((link) => (
+			{navigationLinks?.map((link) => (
 				<a class="hover:underline" href={`${PORTAL_ORIGIN}${link.path}`}>
 					{link.title}
 				</a>
